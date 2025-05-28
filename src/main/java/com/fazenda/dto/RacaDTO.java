@@ -5,9 +5,11 @@ import com.fazenda.entities.Raca;
 public class RacaDTO {
 	
 	private String raca;
+	private String tipo;
 	
 	public RacaDTO(Raca entity) {
 		this.raca = entity.getRaca();
+		this.tipo = entity.getTipo();
 	}
 
 	public String getRaca() {
@@ -17,6 +19,15 @@ public class RacaDTO {
 	public void setRaca(String raca) {
 		this.raca = raca;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 	
 	
 }

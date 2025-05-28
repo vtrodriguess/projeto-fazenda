@@ -15,14 +15,16 @@ public class Raca {
 	private Long id;
 	
 	private String raca;
+	private String tipo;
 	
 	public Raca() {
 		
 	}
 
-	public Raca(Long id, String raca) {
+	public Raca(Long id, String raca, String tipo) {
 		this.id = id;
 		this.raca = raca;
+		this.tipo = tipo;
 	}
 
 	public Long getId() {
@@ -40,6 +42,15 @@ public class Raca {
 	public void setRaca(String raca) {
 		this.raca = raca;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 	
 	
 

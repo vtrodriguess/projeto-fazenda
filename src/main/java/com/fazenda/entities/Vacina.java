@@ -1,0 +1,56 @@
+package com.fazenda.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_vacina")
+public class Vacina {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String vacina;
+	
+	@ManyToOne
+	@JoinColumn(name = "animal_fk")
+	private Animal animal;
+
+	public Vacina(Long id, String vacina, Animal animal) {
+		this.id = id;
+		this.vacina = vacina;
+		this.animal = animal;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getVacina() {
+		return vacina;
+	}
+
+	public void setVacina(String vacina) {
+		this.vacina = vacina;
+	}
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
+	
+	
+}

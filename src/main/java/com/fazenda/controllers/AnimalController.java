@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,11 @@ public class AnimalController {
 	@GetMapping
 	public List<AnimalDTO> findAll(){
 		return animalService.findAll();
+	}
+	
+	@GetMapping(value = "/{id}")
+	public AnimalDTO findById(@PathVariable Long id) {
+		return animalService.findById(id);
 	}
 	
 }

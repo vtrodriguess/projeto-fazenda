@@ -13,4 +13,5 @@ INSERT INTO tb_raca (raca, tipo) VALUES ('Sindi', 'Zebuíno');
 INSERT INTO tb_animal (idade, sexo, raca_fk, categoria_fk, peso) VALUES (3, 'M', 2, 2, 50)
 
 INSERT INTO tb_vacina (vacina, animal_fk) VALUES ('Raiva', 1)
+INSERT INTO tb_vacina (vacina, animal_fk) VALUES ('Frebe Aftosa', 1)
 

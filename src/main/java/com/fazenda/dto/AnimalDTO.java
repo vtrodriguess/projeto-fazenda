@@ -2,17 +2,18 @@ package com.fazenda.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fazenda.entities.Animal;
-import com.fazenda.entities.Categoria;
 import com.fazenda.enums.Sexo;
 
+@JsonPropertyOrder({"id", "racaDTO", "categoriaDTO", "sexo", "idade", "peso", "vacinas"})
 public class AnimalDTO {
 	
 	private Long id;
-    private int idade;
-	private Sexo sexo;
 	private RacaDTO racaDTO;
 	private CategoriaDTO categoriaDTO;
+    private int idade;
+	private Sexo sexo;
 	private double peso;
 	private List<VacinaDTO> vacinas;
 	
@@ -72,6 +73,14 @@ public class AnimalDTO {
 
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+
+	public List<VacinaDTO> getVacinas() {
+		return vacinas;
+	}
+
+	public void setVacinas(List<VacinaDTO> vacinas) {
+		this.vacinas = vacinas;
 	}
 	
 	

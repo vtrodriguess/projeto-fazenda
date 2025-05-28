@@ -21,6 +21,10 @@ public class Vacina {
 	@ManyToOne
 	@JoinColumn(name = "animal_fk")
 	private Animal animal;
+	
+	public Vacina() {
+		
+	}
 
 	public Vacina(Long id, String vacina, Animal animal) {
 		this.id = id;

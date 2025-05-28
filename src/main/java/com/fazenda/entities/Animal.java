@@ -41,6 +41,10 @@ public class Animal {
 	private Categoria categoria;
 
 	private double peso;
+	
+	public Animal() {
+		
+	}
 
 	public Animal(Long id, int idade, Sexo sexo, Raca raca, Categoria categoria, double peso) {
 		this.id = id;

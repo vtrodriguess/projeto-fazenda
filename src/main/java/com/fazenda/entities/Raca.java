@@ -15,6 +15,10 @@ public class Raca {
 	private Long id;
 	
 	private String raca;
+	
+	public Raca() {
+		
+	}
 
 	public Raca(Long id, String raca) {
 		this.id = id;

@@ -15,6 +15,10 @@ public class Categoria {
 	private Long id;
 	
 	private String categoria;
+	
+	public Categoria() {
+		
+	}
 
 	public Categoria(Long id, String categoria) {
 		this.id = id;

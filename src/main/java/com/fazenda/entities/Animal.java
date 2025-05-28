@@ -1,5 +1,8 @@
 package com.fazenda.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fazenda.enums.Sexo;
 
 import jakarta.persistence.Entity;
@@ -10,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +25,9 @@ public class Animal {
 	private Long id;
 	
 	private int idade;
+	
+	@OneToMany(mappedBy = "animal")
+	private List<Vacina> vacinas = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
@@ -90,6 +97,14 @@ public class Animal {
 
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
+	}
+
+	public List<Vacina> getVacinas() {
+		return vacinas;
+	}
+
+	public void setVacinas(List<Vacina> vacinas) {
+		this.vacinas = vacinas;
 	}
 	
 	

@@ -24,7 +24,7 @@ public class Animal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private int idade;
+	private int meses;
 	
 	@OneToMany(mappedBy = "id.animal")
 	private List<AnimalVacina> vacinas = new ArrayList<>();
@@ -47,9 +47,9 @@ public class Animal {
 		
 	}
 
-	public Animal(Long id, int idade, Sexo sexo, Raca raca, Categoria categoria, double peso) {
+	public Animal(Long id, int meses, Sexo sexo, Raca raca, Categoria categoria, double peso) {
 		this.id = id;
-		this.idade = idade;
+		this.meses = meses;
 		this.sexo = sexo;
 		this.raca = raca;
 		this.categoria = categoria;
@@ -64,12 +64,12 @@ public class Animal {
 		this.id = id;
 	}
 
-	public int getIdade() {
-		return idade;
+	public int getMeses() {
+		return meses;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setMeses(int meses) {
+		this.meses = meses;
 	}
 
 	public Raca getRaca() {

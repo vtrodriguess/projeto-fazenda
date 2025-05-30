@@ -7,20 +7,20 @@ import com.fazenda.entities.Animal;
 import com.fazenda.entities.AnimalVacina;
 import com.fazenda.enums.Sexo;
 
-@JsonPropertyOrder({"id", "racaDTO", "categoriaDTO", "sexo", "idade", "peso", "vacinas"})
+@JsonPropertyOrder({"id", "racaDTO", "categoriaDTO", "sexo", "meses", "peso", "vacinas"})
 public class AnimalDTO {
 	
 	private Long id;
 	private RacaDTO racaDTO;
 	private CategoriaDTO categoriaDTO;
-    private int idade;
+    private int meses;
 	private Sexo sexo;
 	private double peso;
 	private List<AnimalVacinaDTO> vacinas;
 	
 	public AnimalDTO(Animal animal) {
 		this.id = animal.getId();
-		this.idade = animal.getIdade();
+		this.meses = animal.getMeses();
 		this.sexo = animal.getSexo();
 		this.racaDTO = new RacaDTO(animal.getRaca());
 		this.categoriaDTO = new CategoriaDTO(animal.getCategoria());
@@ -36,12 +36,12 @@ public class AnimalDTO {
 		this.id = id;
 	}
 
-	public int getIdade() {
-		return idade;
+	public int getMeses() {
+		return meses;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setMeses(int meses) {
+		this.meses = meses;
 	}
 
 	public Sexo getSexo() {

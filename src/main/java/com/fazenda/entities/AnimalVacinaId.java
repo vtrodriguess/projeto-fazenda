@@ -6,7 +6,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Embeddable
-public class AnimalVacinaFK {
+public class AnimalVacinaId {
 
 	@ManyToOne
 	@JoinColumn(name = "animal_id")
@@ -16,11 +16,11 @@ public class AnimalVacinaFK {
 	@JoinColumn(name = "vacina_id")
 	private Vacina vac;
 	
-	public AnimalVacinaFK() {
+	public AnimalVacinaId() {
 		
 	}
 
-	public AnimalVacinaFK(Animal animal, Vacina vacina) {
+	public AnimalVacinaId(Animal animal, Vacina vacina) {
 		this.animal = animal;
 		this.vac = vacina;
 	}

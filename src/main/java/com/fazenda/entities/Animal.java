@@ -26,8 +26,8 @@ public class Animal {
 	
 	private int idade;
 	
-	@OneToMany(mappedBy = "animal")
-	private List<Vacina> vacinas = new ArrayList<>();
+	@OneToMany(mappedBy = "id.animal")
+	private List<AnimalVacina> vacinas = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
@@ -39,6 +39,7 @@ public class Animal {
 	@ManyToOne
 	@JoinColumn(name = "categoria_fk")
 	private Categoria categoria;
+	
 
 	private double peso;
 	
@@ -103,11 +104,11 @@ public class Animal {
 		this.sexo = sexo;
 	}
 
-	public List<Vacina> getVacinas() {
+	public List<AnimalVacina> getVacinas() {
 		return vacinas;
 	}
 
-	public void setVacinas(List<Vacina> vacinas) {
+	public void setVacinas(List<AnimalVacina> vacinas) {
 		this.vacinas = vacinas;
 	}
 	

@@ -18,18 +18,13 @@ public class Vacina {
 	
 	private String vacina;
 	
-	@ManyToOne
-	@JoinColumn(name = "animal_fk")
-	private Animal animal;
-	
 	public Vacina() {
 		
 	}
 
-	public Vacina(Long id, String vacina, Animal animal) {
+	public Vacina(Long id, String vacina) {
 		this.id = id;
 		this.vacina = vacina;
-		this.animal = animal;
 	}
 
 	public Long getId() {
@@ -46,14 +41,6 @@ public class Vacina {
 
 	public void setVacina(String vacina) {
 		this.vacina = vacina;
-	}
-
-	public Animal getAnimal() {
-		return animal;
-	}
-
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
 	}
 	
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fazenda.entities.Animal;
+import com.fazenda.entities.AnimalVacina;
 import com.fazenda.enums.Sexo;
 
 @JsonPropertyOrder({"id", "racaDTO", "categoriaDTO", "sexo", "idade", "peso", "vacinas"})
@@ -15,7 +16,7 @@ public class AnimalDTO {
     private int idade;
 	private Sexo sexo;
 	private double peso;
-	private List<VacinaDTO> vacinas;
+	private List<AnimalVacinaDTO> vacinas;
 	
 	public AnimalDTO(Animal animal) {
 		this.id = animal.getId();
@@ -24,7 +25,7 @@ public class AnimalDTO {
 		this.racaDTO = new RacaDTO(animal.getRaca());
 		this.categoriaDTO = new CategoriaDTO(animal.getCategoria());
 		this.peso = animal.getPeso();
-		this.vacinas = animal.getVacinas().stream().map(x -> new VacinaDTO(x)).toList();
+		this.vacinas = animal.getVacinas().stream().map(x -> new AnimalVacinaDTO(x)).toList();
 	}
 
 	public Long getId() {
@@ -75,11 +76,11 @@ public class AnimalDTO {
 		this.peso = peso;
 	}
 
-	public List<VacinaDTO> getVacinas() {
+	public List<AnimalVacinaDTO> getVacinas() {
 		return vacinas;
 	}
 
-	public void setVacinas(List<VacinaDTO> vacinas) {
+	public void setVacinas(List<AnimalVacinaDTO> vacinas) {
 		this.vacinas = vacinas;
 	}
 	

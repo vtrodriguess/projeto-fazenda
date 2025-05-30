@@ -14,7 +14,7 @@ public class AnimalVacinaFK {
 	
 	@ManyToOne
 	@JoinColumn(name = "vacina_id")
-	private Vacina vacina;
+	private Vacina vac;
 	
 	public AnimalVacinaFK() {
 		
@@ -22,7 +22,7 @@ public class AnimalVacinaFK {
 
 	public AnimalVacinaFK(Animal animal, Vacina vacina) {
 		this.animal = animal;
-		this.vacina = vacina;
+		this.vac = vacina;
 	}
 
 	public Animal getAnimal() {
@@ -33,12 +33,12 @@ public class AnimalVacinaFK {
 		this.animal = animal;
 	}
 
-	public Vacina getVacina() {
-		return vacina;
+	public Vacina getVac() {
+		return vac;
 	}
 
-	public void setVacina(Vacina vacina) {
-		this.vacina = vacina;
+	public void setVac(Vacina vacina) {
+		this.vac = vacina;
 	}
 	
 	

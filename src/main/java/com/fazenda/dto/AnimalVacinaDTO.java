@@ -15,8 +15,8 @@ public class AnimalVacinaDTO {
     }
 
     public AnimalVacinaDTO(AnimalVacina av) {
-        this.vacinaId = av.getId().getVacina().getId();
-        this.vacinaNome = av.getId().getVacina().getVacina();
+        this.vacinaId = av.getId().getVac().getId();
+        this.vacinaNome = av.getId().getVac().getVacina();
         this.data = av.getData();
     }
 

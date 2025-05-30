@@ -24,7 +24,7 @@ public class AnimalVacina {
 
 	public AnimalVacina(Animal animal, Vacina vacina, LocalDate data) {
 		this.id.setAnimal(animal);
-		this.id.setVacina(vacina);
+		this.id.setVac(vacina);
 		this.data = data;
 	}
 

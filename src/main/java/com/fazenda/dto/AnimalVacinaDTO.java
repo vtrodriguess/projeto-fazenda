@@ -19,6 +19,7 @@ public class AnimalVacinaDTO {
         this.vacinaNome = av.getId().getVac().getVacina();
         this.data = av.getData();
     }
+ 
 
 	public Long getVacinaId() {
 		return vacinaId;

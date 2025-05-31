@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fazenda.dto.AnimalDTO;
+import com.fazenda.dto.AnimalRacaDTO;
 import com.fazenda.services.AnimalService;
 
 @RestController
@@ -21,6 +22,11 @@ public class AnimalController {
 	@GetMapping
 	public List<AnimalDTO> findAll(){
 		return animalService.findAll();
+	}
+	
+	@GetMapping(value = "/raca/{raca}")
+	public List<AnimalRacaDTO> findByRaca(@PathVariable String raca){
+		return animalService.findByRaca(raca);
 	}
 	
 	@GetMapping(value = "/{id}")

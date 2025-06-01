@@ -3,6 +3,7 @@ package com.fazenda.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fazenda.enums.Sexo;
 
 import jakarta.persistence.CascadeType;
@@ -28,7 +29,7 @@ public class Animal {
 	private int meses;
 	
 	@OneToMany(mappedBy = "id.animal", cascade = CascadeType.REMOVE)
-	@com.fasterxml.jackson.annotation.JsonManagedReference
+	@JsonIgnore
 	private List<AnimalVacina> vacinas = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)

@@ -13,9 +13,14 @@ import com.fazenda.dto.AnimalVacinaDTO;
 import com.fazenda.entities.Animal;
 import com.fazenda.entities.AnimalVacina;
 import com.fazenda.entities.AnimalVacinaId;
+import com.fazenda.entities.Categoria;
+import com.fazenda.entities.Raca;
 import com.fazenda.entities.Vacina;
+import com.fazenda.enums.Sexo;
 import com.fazenda.repositories.AnimalRepository;
 import com.fazenda.repositories.AnimalVacinaRepository;
+import com.fazenda.repositories.CategoriaRepository;
+import com.fazenda.repositories.RacaRepository;
 import com.fazenda.repositories.VacinaRepository;
 
 @Service
@@ -23,6 +28,12 @@ public class AnimalService {
 
 	@Autowired
 	private AnimalRepository animalRepository;
+	
+	@Autowired
+	RacaRepository racaRepository;
+	
+	@Autowired
+	CategoriaRepository categoriaRepository;
 
 	@Transactional(readOnly = true)
 	public List<AnimalDTO> findAll() {
@@ -43,17 +54,31 @@ public class AnimalService {
 		return animal.stream().map(x -> new AnimalRacaDTO(x)).toList();
 
 	}
-	
+
 	@Transactional
-	public Animal updateAnimal (Long id, Animal animal) {
+	public Animal cadastrarAnimal(Long idRaca, Long idCategoria, Sexo sexo, int meses, double peso) {
+		Animal addAnimal = new Animal();
+		Raca raca = racaRepository.findById(idRaca).get();
+		Categoria categoria = categoriaRepository.findById(idCategoria).get();
+		
+		addAnimal.setCategoria(categoria);
+		addAnimal.setRaca(raca);
+		addAnimal.setSexo(sexo);
+		addAnimal.setPeso(peso);
+		addAnimal.setMeses(meses);
+		
+		return animalRepository.save(addAnimal);
+	}
+
+	@Transactional
+	public Animal updateAnimal(Long id, Animal animal) {
 		Animal attAnimal = animalRepository.findById(id).get();
 		attAnimal.setMeses(animal.getMeses());
 		attAnimal.setPeso(animal.getPeso());
 		attAnimal.setCategoria(animal.getCategoria());
-		
+
 		return animalRepository.save(attAnimal);
 	}
-	
 
 	@Transactional
 	public void deleteById(Long id) {

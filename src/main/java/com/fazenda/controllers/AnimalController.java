@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fazenda.dto.AnimalCadastroDTO;
 import com.fazenda.dto.AnimalDTO;
 import com.fazenda.dto.AnimalRacaDTO;
 import com.fazenda.dto.AnimalVacinaDTO;
 import com.fazenda.dto.NovaVacinaDTO;
 import com.fazenda.entities.Animal;
+import com.fazenda.enums.Sexo;
 import com.fazenda.services.AnimalService;
 
 @RestController
@@ -30,6 +32,13 @@ public class AnimalController {
 	@GetMapping
 	public List<AnimalDTO> findAll(){
 		return animalService.findAll();
+	}
+	
+	@PostMapping(value = "/cadastrar")
+	public AnimalDTO cadastrarAnimal(@RequestBody AnimalCadastroDTO dto) {
+		Animal animal = animalService.cadastrarAnimal(dto.getIdRaca(), dto.getIdCategoria(), dto.getSexo(), dto.getMeses(), dto.getPeso());
+		
+		return new AnimalDTO(animal);
 	}
 	
 	@GetMapping(value = "/raca/{raca}")

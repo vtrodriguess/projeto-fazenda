@@ -10,6 +10,7 @@ public class AnimalVacinaId {
 
 	@ManyToOne
 	@JoinColumn(name = "animal_id")
+	@com.fasterxml.jackson.annotation.JsonBackReference
 	private Animal animal;
 	
 	@ManyToOne

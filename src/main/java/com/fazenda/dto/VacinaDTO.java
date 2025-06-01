@@ -7,9 +7,19 @@ import com.fazenda.entities.Vacina;
 public class VacinaDTO {
 	
 	private String vacina;
+	private Long id;
 	
 	public VacinaDTO(Vacina vacina) {
+		this.id = vacina.getId();
 		this.vacina = vacina.getVacina();
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getVacina() {
@@ -19,6 +29,7 @@ public class VacinaDTO {
 	public void setVacina(String vacina) {
 		this.vacina = vacina;
 	}
+
 
 	
 	

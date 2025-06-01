@@ -28,6 +28,7 @@ public class Animal {
 	private int meses;
 	
 	@OneToMany(mappedBy = "id.animal", cascade = CascadeType.REMOVE)
+	@com.fasterxml.jackson.annotation.JsonManagedReference
 	private List<AnimalVacina> vacinas = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)

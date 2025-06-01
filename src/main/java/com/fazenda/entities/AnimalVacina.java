@@ -27,6 +27,7 @@ public class AnimalVacina {
 		this.id.setVac(vacina);
 		this.data = data;
 	}
+	
 
 	public AnimalVacinaId getId() {
 		return id;

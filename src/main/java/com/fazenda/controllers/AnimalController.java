@@ -3,7 +3,6 @@ package com.fazenda.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,13 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fazenda.dto.AnimalCadastroDTO;
 import com.fazenda.dto.AnimalDTO;
 import com.fazenda.dto.AnimalRacaDTO;
-import com.fazenda.dto.AnimalVacinaDTO;
-import com.fazenda.dto.NovaVacinaDTO;
+import com.fazenda.dto.AtualizaAnimalDTO;
+import com.fazenda.dto.CadastraAnimalDTO;
 import com.fazenda.entities.Animal;
-import com.fazenda.enums.Sexo;
 import com.fazenda.services.AnimalService;
 
 @RestController
@@ -35,7 +32,7 @@ public class AnimalController {
 	}
 	
 	@PostMapping(value = "/cadastrar")
-	public AnimalDTO cadastrarAnimal(@RequestBody AnimalCadastroDTO dto) {
+	public AnimalDTO cadastrarAnimal(@RequestBody CadastraAnimalDTO dto) {
 		Animal animal = animalService.cadastrarAnimal(dto.getIdRaca(), dto.getIdCategoria(), dto.getSexo(), dto.getMeses(), dto.getPeso());
 		
 		return new AnimalDTO(animal);
@@ -53,8 +50,8 @@ public class AnimalController {
 	
 	
 	@PutMapping(value = "/{id}")
-	public AnimalDTO updateAnimal (@PathVariable Long id, @RequestBody Animal obj) {
-		Animal animal = animalService.updateAnimal(id, obj);
+	public AnimalDTO atualizaAnimal (@PathVariable Long id, @RequestBody AtualizaAnimalDTO dto) {
+		Animal animal = animalService.atualizaAnimal(id, dto.getIdCategoria(), dto.getMeses(), dto.getPeso());
 		return new AnimalDTO(animal);
 	}
 	

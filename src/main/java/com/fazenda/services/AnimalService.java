@@ -71,11 +71,12 @@ public class AnimalService {
 	}
 
 	@Transactional
-	public Animal updateAnimal(Long id, Animal animal) {
+	public Animal atualizaAnimal(Long id, Long idCategoria, int meses, double peso) {
 		Animal attAnimal = animalRepository.findById(id).get();
-		attAnimal.setMeses(animal.getMeses());
-		attAnimal.setPeso(animal.getPeso());
-		attAnimal.setCategoria(animal.getCategoria());
+		Categoria categoria = categoriaRepository.findById(idCategoria).get();
+		attAnimal.setMeses(meses);
+		attAnimal.setPeso(peso);
+		attAnimal.setCategoria(categoria);
 
 		return animalRepository.save(attAnimal);
 	}

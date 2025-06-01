@@ -4,7 +4,7 @@ import com.fazenda.entities.Categoria;
 import com.fazenda.entities.Raca;
 import com.fazenda.enums.Sexo;
 
-public class AnimalCadastroDTO {
+public class CadastraAnimalDTO {
 	
 	private Long idRaca;
 	private Long idCategoria;
@@ -12,11 +12,11 @@ public class AnimalCadastroDTO {
 	private int meses;
 	private double peso;
 	
-	public AnimalCadastroDTO() {
+	public CadastraAnimalDTO() {
 		
 	}
 
-	public AnimalCadastroDTO(Raca idRaca, Categoria idCategoria, Sexo sexo, int meses, double peso) {
+	public CadastraAnimalDTO(Raca idRaca, Categoria idCategoria, Sexo sexo, int meses, double peso) {
 		this.idRaca = idRaca.getId();
 		this.idCategoria = idCategoria.getId();
 		this.sexo = sexo;

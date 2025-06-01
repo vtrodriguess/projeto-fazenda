@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.fazenda.entities.Animal;
-import com.fazenda.projections.AnimalRaca;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
 

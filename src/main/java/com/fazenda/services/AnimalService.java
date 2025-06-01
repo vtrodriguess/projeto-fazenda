@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fazenda.dto.AnimalDTO;
 import com.fazenda.dto.AnimalRacaDTO;
 import com.fazenda.entities.Animal;
-import com.fazenda.projections.AnimalRaca;
 import com.fazenda.repositories.AnimalRepository;
 
 @Service

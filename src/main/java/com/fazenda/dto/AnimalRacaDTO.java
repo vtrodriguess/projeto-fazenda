@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fazenda.entities.Animal;
 import com.fazenda.enums.Sexo;
-import com.fazenda.projections.AnimalRaca;
+
 
 public class AnimalRacaDTO {
 
@@ -25,7 +25,7 @@ public class AnimalRacaDTO {
 		this.peso = animal.getPeso();
 		this.vacinas = animal.getVacinas().stream().map(x -> new AnimalVacinaDTO(x)).toList();
 	}
-
+	
 
 	public Long getId() {
 		return id;

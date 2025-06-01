@@ -9,10 +9,18 @@ public class VacinaDTO {
 	private String vacina;
 	private Long id;
 	
+	public VacinaDTO() {
+		
+	}
+	
 	public VacinaDTO(Vacina vacina) {
 		this.id = vacina.getId();
 		this.vacina = vacina.getVacina();
 	}
+	
+	public VacinaDTO(String vacina) {
+        this.vacina = vacina;
+    }
 	
 	public Long getId() {
 		return id;

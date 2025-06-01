@@ -48,5 +48,13 @@ public class VacinaService {
 
 		return new AnimalVacinaDTO(animalVacinaRepository.save(av));
 	}
+	
+	@Transactional
+	public VacinaDTO criarVacina(String vacina) {
+		Vacina vac = new Vacina();
+		vac.setVacina(vacina);
+		
+		return new VacinaDTO(vacinaRepository.save(vac));
+	}
 
 }

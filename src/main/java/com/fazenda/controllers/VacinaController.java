@@ -17,23 +17,29 @@ import com.fazenda.dto.VacinaDTO;
 import com.fazenda.services.VacinaService;
 
 @RestController
-@RequestMapping (value = "/vacinas")
+@RequestMapping(value = "/vacinas")
 public class VacinaController {
-	
+
 	@Autowired
 	private VacinaService vacinaService;
-	
+
 	@GetMapping
-		public List<VacinaDTO> findByAll(){
-			return vacinaService.findAll();
-		}
+	public List<VacinaDTO> findByAll() {
+		return vacinaService.findAll();
+	}
 	
-	
+	@PostMapping(value = "/criar")
+	public ResponseEntity<VacinaDTO> novaVacina(@RequestBody VacinaDTO vacina) {
+		VacinaDTO vac = vacinaService.criarVacina(vacina.getVacina());
+		
+		return ResponseEntity.ok().header("X-Mensagem", "Vacina criada").body(vac);
+	}
+
 	@PostMapping(value = "/vacinar/{id}")
 	public ResponseEntity<AnimalVacinaDTO> novaVacina(@PathVariable Long id, @RequestBody NovaVacinaDTO novaVacina) {
 		AnimalVacinaDTO animal = vacinaService.novaVacina(id, novaVacina.getVacinaId(), novaVacina.getData());
-		
-		return ResponseEntity.ok(animal);
+
+		return ResponseEntity.ok().header("X-Mensagem", "Vacina adicionada ao animal").body(animal);
 	}
 
 }

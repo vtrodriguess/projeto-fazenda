@@ -3,6 +3,7 @@ package com.fazenda.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,11 @@ public class AnimalController {
 	@GetMapping(value = "/{id}")
 	public AnimalDTO findById(@PathVariable Long id) {
 		return animalService.findById(id);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public void deleteById(@PathVariable Long id) {
+		 animalService.deleteById(id);
 	}
 	
 }

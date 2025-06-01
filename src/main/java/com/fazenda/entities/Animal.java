@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fazenda.enums.Sexo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,7 +27,7 @@ public class Animal {
 	
 	private int meses;
 	
-	@OneToMany(mappedBy = "id.animal")
+	@OneToMany(mappedBy = "id.animal", cascade = CascadeType.REMOVE)
 	private List<AnimalVacina> vacinas = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)

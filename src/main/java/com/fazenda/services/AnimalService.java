@@ -16,24 +16,29 @@ public class AnimalService {
 
 	@Autowired
 	private AnimalRepository animalRepository;
-	
+
 	@Transactional(readOnly = true)
-	public List<AnimalDTO> findAll(){
+	public List<AnimalDTO> findAll() {
 		List<Animal> animal = animalRepository.findAll();
-		return animal.stream().map(x -> new AnimalDTO (x)).toList();
+		return animal.stream().map(x -> new AnimalDTO(x)).toList();
 	}
-	
+
 	@Transactional(readOnly = true)
 	public AnimalDTO findById(Long id) {
 		Animal animal = animalRepository.findById(id).get();
 		return new AnimalDTO(animal);
-		
+
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<AnimalRacaDTO> findByRaca(String raca) {
-	    List<Animal> animal = animalRepository.findByRaca(raca);
+		List<Animal> animal = animalRepository.findByRaca(raca);
 		return animal.stream().map(x -> new AnimalRacaDTO(x)).toList();
-		
+
+	}
+
+	@Transactional
+	public void deleteById(Long id) {
+		animalRepository.deleteById(id);
 	}
 }

@@ -37,13 +37,12 @@ public class VacinaService {
 
 	
 	@Transactional(readOnly = true)
-	public List<VacinaDTO> findAll() {
-		List<Vacina> vacina = vacinaRepository.findAll();
-		return vacina.stream().map(x -> new VacinaDTO(x)).toList();
+	public List<Vacina> findAll() {
+		return vacinaRepository.findAll();
 	}
 
 	@Transactional
-	public AnimalVacinaDTO novaVacina(Long idAnimal, Long idVacina, LocalDate dataVacina) {
+	public AnimalVacina novaVacina(Long idAnimal, Long idVacina, LocalDate dataVacina) {
 		Animal animal = animalRepository.findById(idAnimal).get();
 		Vacina vacina = vacinaRepository.findById(idVacina).get();
 
@@ -52,15 +51,15 @@ public class VacinaService {
 		av.setId(avId);
 		av.setData(dataVacina);
 
-		return new AnimalVacinaDTO(animalVacinaRepository.save(av));
+		return animalVacinaRepository.save(av);
 	}
 	
 	@Transactional
-	public VacinaDTO criarVacina(String vacina) {
+	public Vacina criarVacina(String vacina) {
 		Vacina vac = new Vacina();
 		vac.setVacina(vacina);
 		
-		return new VacinaDTO(vacinaRepository.save(vac));
+		return vacinaRepository.save(vac);
 	}
 
 }

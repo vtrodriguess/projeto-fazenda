@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fazenda.dto.AnimalVacinaDTO;
 import com.fazenda.dto.NovaVacinaDTO;
 import com.fazenda.dto.VacinaDTO;
+import com.fazenda.entities.AnimalVacina;
+import com.fazenda.entities.Vacina;
 import com.fazenda.services.VacinaService;
 
 @RestController
@@ -25,21 +27,25 @@ public class VacinaController {
 
 	@GetMapping
 	public List<VacinaDTO> findByAll() {
-		return vacinaService.findAll();
+		List <Vacina> vacina = vacinaService.findAll();
+		
+		return vacina.stream().map(x -> new VacinaDTO(x)).toList();
 	}
 	
-	@PostMapping(value = "/criar")
+	@PostMapping(value = "/cadastrar")
 	public ResponseEntity<VacinaDTO> novaVacina(@RequestBody VacinaDTO vacina) {
-		VacinaDTO vac = vacinaService.criarVacina(vacina.getVacina());
+		Vacina vac = vacinaService.criarVacina(vacina.getVacina());
+		VacinaDTO dto = new VacinaDTO(vac);
 		
-		return ResponseEntity.ok().header("X-Mensagem", "Vacina criada").body(vac);
+		return ResponseEntity.ok().header("X-Mensagem", "Vacina criada").body(dto);
 	}
 
 	@PostMapping(value = "/vacinar/{id}")
 	public ResponseEntity<AnimalVacinaDTO> novaVacina(@PathVariable Long id, @RequestBody NovaVacinaDTO novaVacina) {
-		AnimalVacinaDTO animal = vacinaService.novaVacina(id, novaVacina.getVacinaId(), novaVacina.getData());
-
-		return ResponseEntity.ok().header("X-Mensagem", "Vacina adicionada ao animal").body(animal);
+		AnimalVacina animal = vacinaService.novaVacina(id, novaVacina.getVacinaId(), novaVacina.getData());
+		AnimalVacinaDTO dto = new AnimalVacinaDTO(animal);
+		
+		return ResponseEntity.ok().header("X-Mensagem", "Vacina adicionada ao animal").body(dto);
 	}
 
 }

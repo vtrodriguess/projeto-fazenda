@@ -11,7 +11,7 @@ import com.fazenda.entities.Animal;
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
 	@Query(value = """
-			SELECT a FROM Animal a JOIN FETCH a.raca r LEFT JOIN FETCH a.vacinas v WHERE r.raca = :x""")
-	List<Animal> findByRaca(@Param("x") String raca);
+			SELECT a FROM Animal a JOIN FETCH a.raca r LEFT JOIN FETCH a.vacinas v WHERE r.id = :x""")
+	List<Animal> findByRaca(@Param("x") Long id);
 
 }

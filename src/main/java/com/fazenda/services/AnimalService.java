@@ -36,16 +36,14 @@ public class AnimalService {
 	}
 
 	@Transactional(readOnly = true)
-	public Optional<AnimalDTO> findById(Long id) {
-		Optional<Animal> x = animalRepository.findById(id);
-
-		return x.map(animal -> new AnimalDTO(animal));
+	public Optional<Animal> findById(Long id) {
+		return animalRepository.findById(id);
 
 	}
 
 	@Transactional(readOnly = true)
-	public List<AnimalRacaDTO> findByRaca(String raca) {
-		List<Animal> animal = animalRepository.findByRaca(raca);
+	public List<AnimalRacaDTO> findByRaca(Long id) {
+		List<Animal> animal = animalRepository.findByRaca(id);
 		return animal.stream().map(x -> new AnimalRacaDTO(x)).toList();
 
 	}

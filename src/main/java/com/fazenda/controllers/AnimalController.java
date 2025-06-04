@@ -35,14 +35,18 @@ public class AnimalController {
 		return ResponseEntity.ok(animalService.findAll());
 	}
 
-	@GetMapping(value = "/raca/{raca}")
-	public ResponseEntity <List<AnimalRacaDTO>> findByRaca(@PathVariable String raca) {
-		return ResponseEntity.ok(animalService.findByRaca(raca));
+	@GetMapping(value = "/raca/{id}")
+	public ResponseEntity <List<AnimalRacaDTO>> findByRaca(@PathVariable Long id) {
+		return ResponseEntity.ok(animalService.findByRaca(id));
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<AnimalDTO> findById(@PathVariable Long id) {
-		return animalService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+		Optional<Animal> animal = animalService.findById(id);
+		
+		AnimalDTO dto = new AnimalDTO(animal.get());
+		
+		return ResponseEntity.ok(dto);
 	}
 
 	@PostMapping(value = "/cadastrar")
@@ -52,16 +56,16 @@ public class AnimalController {
 
 		AnimalDTO animalDTO = new AnimalDTO(animal.get());
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(animalDTO);
+		return ResponseEntity.status(HttpStatus.CREATED)
+								.header("X-Cadastro", "Animal cadastrado!")
+								.body(animalDTO);
 	}
 
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<AnimalDTO> atualizaAnimal(@PathVariable Long id, @RequestBody AtualizaAnimalDTO dto) {
-		Optional<Animal> animal = animalService.atualizaAnimal(id, dto.getIdCategoria(), dto.getMeses(), dto.getPeso());
+		animalService.atualizaAnimal(id, dto.getIdCategoria(), dto.getMeses(), dto.getPeso());
 		
-		AnimalDTO animalDTO = new AnimalDTO(animal.get());
-		
-		return ResponseEntity.ok(animalDTO);
+		return ResponseEntity.noContent().build();
 	}
 
 	@DeleteMapping(value = "/{id}")

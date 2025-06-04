@@ -1,5 +1,7 @@
 package com.fazenda.entities;
 
+import java.util.Objects;
+
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
@@ -39,6 +41,23 @@ public class AnimalVacinaId {
 
 	public void setVac(Vacina vacina) {
 		this.vac = vacina;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(animal, vac);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AnimalVacinaId other = (AnimalVacinaId) obj;
+		return Objects.equals(animal, other.animal) && Objects.equals(vac, other.vac);
 	}
 	
 	

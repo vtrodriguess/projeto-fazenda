@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_raca")
@@ -14,7 +16,10 @@ public class Raca {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "Raca obrigatória")
 	private String raca;
+	
+	@NotBlank(message = "Tipo obrigatório")
 	private String tipo;
 	
 	public Raca() {

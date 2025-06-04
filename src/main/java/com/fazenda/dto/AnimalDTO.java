@@ -18,6 +18,10 @@ public class AnimalDTO {
 	private double peso;
 	private List<AnimalVacinaDTO> vacinas;
 	
+	public AnimalDTO() {
+		
+	}
+	
 	public AnimalDTO(Animal animal) {
 		this.id = animal.getId();
 		this.meses = animal.getMeses();

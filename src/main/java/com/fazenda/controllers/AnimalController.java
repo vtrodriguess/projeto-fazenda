@@ -1,8 +1,11 @@
 package com.fazenda.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,40 +27,46 @@ import com.fazenda.services.AnimalService;
 public class AnimalController {
 
 	@Autowired
+	
 	private AnimalService animalService;
-	
+
 	@GetMapping
-	public List<AnimalDTO> findAll(){
-		return animalService.findAll();
+	public ResponseEntity<List<AnimalDTO>> findAll() {
+		return ResponseEntity.ok(animalService.findAll());
 	}
-	
-	@PostMapping(value = "/cadastrar")
-	public AnimalDTO cadastrarAnimal(@RequestBody CadastraAnimalDTO dto) {
-		Animal animal = animalService.cadastrarAnimal(dto.getIdRaca(), dto.getIdCategoria(), dto.getSexo(), dto.getMeses(), dto.getPeso());
-		
-		return new AnimalDTO(animal);
-	}
-	
+
 	@GetMapping(value = "/raca/{raca}")
-	public List<AnimalRacaDTO> findByRaca(@PathVariable String raca){
-		return animalService.findByRaca(raca);
+	public ResponseEntity <List<AnimalRacaDTO>> findByRaca(@PathVariable String raca) {
+		return ResponseEntity.ok(animalService.findByRaca(raca));
 	}
-	
+
 	@GetMapping(value = "/{id}")
-	public AnimalDTO findById(@PathVariable Long id) {
-		return animalService.findById(id);
+	public ResponseEntity<AnimalDTO> findById(@PathVariable Long id) {
+		return animalService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
-	
-	
+
+	@PostMapping(value = "/cadastrar")
+	public ResponseEntity<AnimalDTO> cadastrarAnimal(@RequestBody CadastraAnimalDTO dto) {
+		Optional<Animal> animal = animalService.cadastrarAnimal(dto.getIdRaca(), dto.getIdCategoria(), dto.getSexo(),
+				dto.getMeses(), dto.getPeso());
+
+		AnimalDTO animalDTO = new AnimalDTO(animal.get());
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(animalDTO);
+	}
+
 	@PutMapping(value = "/{id}")
-	public AnimalDTO atualizaAnimal (@PathVariable Long id, @RequestBody AtualizaAnimalDTO dto) {
-		Animal animal = animalService.atualizaAnimal(id, dto.getIdCategoria(), dto.getMeses(), dto.getPeso());
-		return new AnimalDTO(animal);
+	public ResponseEntity<AnimalDTO> atualizaAnimal(@PathVariable Long id, @RequestBody AtualizaAnimalDTO dto) {
+		Optional<Animal> animal = animalService.atualizaAnimal(id, dto.getIdCategoria(), dto.getMeses(), dto.getPeso());
+		
+		AnimalDTO animalDTO = new AnimalDTO(animal.get());
+		
+		return ResponseEntity.ok(animalDTO);
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
 	public void deleteById(@PathVariable Long id) {
-		 animalService.deleteById(id);
+		animalService.deleteById(id);
 	}
-	
+
 }

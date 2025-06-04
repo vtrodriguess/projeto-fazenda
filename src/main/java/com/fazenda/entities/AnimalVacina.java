@@ -7,6 +7,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 
 @Entity
 @Table(name = "tb_animal_vacina")
@@ -15,6 +17,8 @@ public class AnimalVacina {
 	@EmbeddedId
 	private AnimalVacinaId id;
 	
+	@NotNull(message = "Data obrigatória")
+	@Past(message = "A data deve ser de hoje ou anterior a hoje")
 	@Column(name = "data_aplicacao")
 	private LocalDate data;
 

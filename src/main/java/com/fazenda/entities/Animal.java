@@ -17,6 +17,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_animal")
@@ -26,24 +29,28 @@ public class Animal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Min(0) 
 	private int meses;
 	
 	@OneToMany(mappedBy = "id.animal", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<AnimalVacina> vacinas = new ArrayList<>();
 	
+	@NotNull(message = "Sexo obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	
+	@NotNull(message = "Raca obrigatória")
 	@ManyToOne
 	@JoinColumn(name = "raca_fk")
 	private Raca raca;
 	
+	@NotNull(message = "Categoria obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "categoria_fk")
 	private Categoria categoria;
 	
-
+	@Positive(message = "Peso precisa ser maior do que 0")
 	private double peso;
 	
 	public Animal() {

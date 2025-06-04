@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 public class AnimalVacina {
 	
 	@EmbeddedId
-	private AnimalVacinaId id = new AnimalVacinaId();
+	private AnimalVacinaId id;
 	
 	@Column(name = "data_aplicacao")
 	private LocalDate data;

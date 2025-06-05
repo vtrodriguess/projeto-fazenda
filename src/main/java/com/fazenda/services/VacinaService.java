@@ -3,8 +3,6 @@ package com.fazenda.services;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +17,15 @@ import com.fazenda.repositories.VacinaRepository;
 @Service
 public class VacinaService {
 
-	@Autowired
 	private AnimalRepository animalRepository;
-
-	@Autowired
 	private VacinaRepository vacinaRepository;
-
-	@Autowired
 	private AnimalVacinaRepository animalVacinaRepository;
+	
+	public VacinaService(AnimalRepository animalRepository, VacinaRepository vacinaRepository, AnimalVacinaRepository animalVacinaRepository) {
+		this.animalRepository = animalRepository;
+		this.vacinaRepository = vacinaRepository;
+		this.animalVacinaRepository = animalVacinaRepository;
+	}
 
 	@Transactional(readOnly = true)
 	public List<Vacina> findAll() {

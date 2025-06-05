@@ -3,7 +3,6 @@ package com.fazenda.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +16,12 @@ import com.fazenda.services.RacaService;
 @RequestMapping(value = "/racas")
 @RestController
 public class RacaController {
-	
-	@Autowired
+
 	private RacaService racaService;
+	
+	public RacaController (RacaService racaService) {
+		this.racaService = racaService;
+	}
 	
 	@GetMapping
 	public List<RacaDTO> findAll(){

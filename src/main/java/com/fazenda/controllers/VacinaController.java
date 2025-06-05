@@ -2,8 +2,6 @@ package com.fazenda.controllers;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +22,11 @@ import com.fazenda.services.VacinaService;
 @RequestMapping(value = "/vacinas")
 public class VacinaController {
 
-	@Autowired
 	private VacinaService vacinaService;
+	
+	public VacinaController(VacinaService vacinaService) {
+		this.vacinaService = vacinaService;
+	}
 
 	@GetMapping
 	public List<VacinaDTO> findByAll() {

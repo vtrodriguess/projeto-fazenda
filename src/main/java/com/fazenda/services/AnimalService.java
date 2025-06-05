@@ -2,8 +2,6 @@ package com.fazenda.services;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,14 +18,17 @@ import com.fazenda.repositories.RacaRepository;
 @Service
 public class AnimalService {
 
-	@Autowired
 	private AnimalRepository animalRepository;
-
-	@Autowired
-	RacaRepository racaRepository;
-
-	@Autowired
-	CategoriaRepository categoriaRepository;
+	private RacaRepository racaRepository;
+	private CategoriaRepository categoriaRepository;
+	
+	
+	public AnimalService(AnimalRepository animalRepository, RacaRepository racaRepository, CategoriaRepository categoriaRepository) {
+		this.animalRepository = animalRepository;
+		this.racaRepository = racaRepository;
+		this.categoriaRepository = categoriaRepository;
+		
+	}
 
 	@Transactional(readOnly = true)
 	public List<AnimalDTO> findAll() {

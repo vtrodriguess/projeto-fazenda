@@ -2,8 +2,6 @@ package com.fazenda.controllers;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,9 +24,11 @@ import com.fazenda.services.AnimalService;
 @RequestMapping(value = "/animais")
 public class AnimalController {
 
-	@Autowired
-	
 	private AnimalService animalService;
+	
+	public AnimalController (AnimalService animalService) {
+		this.animalService = animalService;
+	}
 
 	@GetMapping
 	public ResponseEntity<List<AnimalDTO>> findAll() {

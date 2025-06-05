@@ -2,29 +2,23 @@ package com.fazenda.services;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fazenda.dto.AnimalVacinaDTO;
-import com.fazenda.dto.VacinaDTO;
 import com.fazenda.entities.Animal;
 import com.fazenda.entities.AnimalVacina;
 import com.fazenda.entities.AnimalVacinaId;
-import com.fazenda.entities.Categoria;
-import com.fazenda.entities.Raca;
 import com.fazenda.entities.Vacina;
-import com.fazenda.enums.Sexo;
 import com.fazenda.repositories.AnimalRepository;
 import com.fazenda.repositories.AnimalVacinaRepository;
-import com.fazenda.repositories.CategoriaRepository;
-import com.fazenda.repositories.RacaRepository;
 import com.fazenda.repositories.VacinaRepository;
 
 @Service
 public class VacinaService {
-	
+
 	@Autowired
 	private AnimalRepository animalRepository;
 
@@ -33,32 +27,37 @@ public class VacinaService {
 
 	@Autowired
 	private AnimalVacinaRepository animalVacinaRepository;
-	
 
-	
 	@Transactional(readOnly = true)
 	public List<Vacina> findAll() {
 		return vacinaRepository.findAll();
 	}
 
 	@Transactional
-	public AnimalVacina novaVacina(Long idAnimal, Long idVacina, LocalDate dataVacina) {
-		Animal animal = animalRepository.findById(idAnimal).get();
-		Vacina vacina = vacinaRepository.findById(idVacina).get();
+	public Optional<AnimalVacina> novaVacina(Long idAnimal, Long idVacina, LocalDate dataVacina) {
+		Optional<Animal> animal = animalRepository.findById(idAnimal);
+		Optional<Vacina> vacina = vacinaRepository.findById(idVacina);
 
-		AnimalVacinaId avId = new AnimalVacinaId(animal, vacina);
-		AnimalVacina av = new AnimalVacina();
-		av.setId(avId);
-		av.setData(dataVacina);
+		if (animal.isPresent() && vacina.isPresent()) {
+			AnimalVacinaId avId = new AnimalVacinaId(animal.get(), vacina.get());
+			AnimalVacina av = new AnimalVacina();
+			av.setId(avId);
+			av.setData(dataVacina);
+			
+			AnimalVacina cadastro = animalVacinaRepository.save(av);
+			
+			return Optional.of(cadastro);
 
-		return animalVacinaRepository.save(av);
+		}
+
+		return Optional.empty();
 	}
-	
+
 	@Transactional
 	public Vacina criarVacina(String vacina) {
 		Vacina vac = new Vacina();
 		vac.setVacina(vacina);
-		
+
 		return vacinaRepository.save(vac);
 	}
 

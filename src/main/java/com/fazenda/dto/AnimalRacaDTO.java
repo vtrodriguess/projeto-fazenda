@@ -15,6 +15,10 @@ public class AnimalRacaDTO {
 	private Sexo sexo;
 	private double peso;
 	private List<AnimalVacinaDTO> vacinas;
+	
+	public AnimalRacaDTO() {
+		
+	}
 
 	public AnimalRacaDTO(Animal animal) {
 		this.id = animal.getId();

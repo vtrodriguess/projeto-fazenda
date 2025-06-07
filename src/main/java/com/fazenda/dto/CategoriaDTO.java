@@ -6,6 +6,10 @@ public class CategoriaDTO {
 
 	private String categoria;
 	
+	public CategoriaDTO() {
+		
+	}
+	
 	public CategoriaDTO(Categoria entity) {
 		this.categoria = entity.getCategoria();
 	}

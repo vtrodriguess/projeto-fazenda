@@ -7,6 +7,10 @@ public class RacaDTO {
 	private String raca;
 	private String tipo;
 	
+	public RacaDTO() {
+		
+	}
+	
 	public RacaDTO(Raca entity) {
 		this.raca = entity.getRaca();
 		this.tipo = entity.getTipo();
